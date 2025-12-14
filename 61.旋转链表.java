@@ -17,7 +17,27 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) return null;
         
+        int len = 1;
+        ListNode p = head;
+        while (p.next != null) {
+            p = p.next;
+            len++;
+        }
+        k %= len;
+
+        if (k == 0) return head;
+        ListNode p2 = head;
+        for (int i = 0;i < len - k - 1;i++) {
+            p2 = p2.next;
+        }
+
+        ListNode ans = p2.next;
+        p2.next = null;
+        p.next = head;
+
+        return ans;
     }
 }
 // @lc code=end
